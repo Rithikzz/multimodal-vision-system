@@ -105,6 +105,16 @@ def detect_gesture(frame):
             gesture = "Thumbs Up"
             confidence = 0.92
 
+        # Peace Sign: Index and middle extended, others closed
+        elif index_up and middle_up and not ring_up and not pinky_up:
+            gesture = "Peace"
+            confidence = 0.93
+
+        # Pointing: Only index extended
+        elif index_up and not middle_up and not ring_up and not pinky_up and not thumb_up:
+            gesture = "Pointing"
+            confidence = 0.91
+
         # Open Palm: All fingers extended
         elif fingers_extended >= 4 and thumb_up:
             gesture = "Open Palm"

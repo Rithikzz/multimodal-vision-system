@@ -189,7 +189,11 @@ while True:
             if emotion == "Happy":
                 emotion_color = (0, 255, 0)  # Green
             elif emotion == "Sad":
+                emotion_color = (255, 0, 0)  # Blue
+            elif emotion == "Angry":
                 emotion_color = (0, 0, 255)  # Red
+            elif emotion == "Surprised":
+                emotion_color = (0, 255, 255)  # Yellow
             else:
                 emotion_color = (255, 165, 0)  # Orange for Neutral
             

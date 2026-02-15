@@ -5,18 +5,18 @@ from tensorflow.keras.models import load_model
 # Load emotion model once (compile=False to avoid optimizer issues)
 emotion_model = load_model("models/emotion_model.h5", compile=False)
 
-# Model outputs 7 classes, we map to 3
+# Model outputs 7 classes, we map to 5
 EMOTIONS_7 = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
-EMOTIONS = ["Sad", "Neutral", "Happy"]
+EMOTIONS = ["Happy", "Sad", "Angry", "Surprised", "Neutral"]
 
-# Mapping from 7 classes to 3 classes
+# Mapping from 7 classes to 5 classes
 EMOTION_MAP = {
-    "angry": "Sad",
-    "disgust": "Sad",
+    "angry": "Angry",
+    "disgust": "Angry",
     "fear": "Sad",
     "happy": "Happy",
     "sad": "Sad",
-    "surprise": "Happy",
+    "surprise": "Surprised",
     "neutral": "Neutral"
 }
 
@@ -57,8 +57,8 @@ def detect_emotion(frame):
 
             preds = emotion_model.predict(face, verbose=0)
             
-            # Map 7-class predictions to 3 classes
-            mapped_preds = {"Sad": 0.0, "Neutral": 0.0, "Happy": 0.0}
+            # Map 7-class predictions to 5 classes
+            mapped_preds = {"Happy": 0.0, "Sad": 0.0, "Angry": 0.0, "Surprised": 0.0, "Neutral": 0.0}
             for i, prob in enumerate(preds[0]):
                 emotion_7 = EMOTIONS_7[i]
                 emotion_3 = EMOTION_MAP[emotion_7]

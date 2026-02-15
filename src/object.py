@@ -3,8 +3,8 @@ from ultralytics import YOLO
 # Load model once
 model = YOLO("models/yolo.pt")
 
-# Allowed classes (COCO)
-ALLOWED = {"person", "cell phone", "bottle"}
+# Allowed classes (COCO) - Indoor relevant objects
+ALLOWED = {"cell phone", "bottle", "laptop", "chair", "book", "cup", "tv"}
 
 
 def detect_objects(frame):
